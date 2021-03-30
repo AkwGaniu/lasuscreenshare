@@ -1,4 +1,5 @@
 let express = require( 'express' );
+const dotenv = require('dotenv')
 let app = express();
 let server = require( 'http' ).Server( app );
 let io = require( 'socket.io' )( server );
@@ -8,6 +9,8 @@ let favicon = require( 'serve-favicon' );
 
 app.use( favicon( path.join( __dirname, '/src/favicon.ico' ) ) );
 app.use( '/assets', express.static( path.join( __dirname, '/src/assets' ) ) );
+
+dotenv.config()
 
 app.get( '/', ( req, res ) => {
     res.sendFile( __dirname + '/src/index.html' );
